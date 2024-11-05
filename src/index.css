@@ -20,7 +20,6 @@ h4,
 h5,
 h6,
 p {
-  font-size: 30px;
   line-height: 1.1;
   margin: 0;
 }
@@ -50,6 +49,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  outline: none;
 }
 button:hover {
   border-color: #646cff;

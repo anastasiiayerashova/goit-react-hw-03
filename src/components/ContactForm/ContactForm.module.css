@@ -1,0 +1,34 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.formDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 360px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.inputs {
+  border-radius: 6px;
+  padding: 4px;
+  outline: none;
+  width: 100%;
+  border: 1px solid lightgrey;
+}
+
+.addBtn {
+  margin: 0 auto;
+  margin-top: 10px;
+}

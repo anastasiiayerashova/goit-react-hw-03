@@ -1,0 +1,15 @@
+.findDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 40px;
+}
+
+.input {
+  border-radius: 6px;
+  padding: 4px;
+  outline: none;
+  width: 100%;
+  border: 1px solid lightgrey;
+}
