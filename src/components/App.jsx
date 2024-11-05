@@ -6,59 +6,52 @@ import contactData from '../contactData.json';
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
-
-
 export default function App() {
 
- const [data, setData] = useState(() => {
+  const [filter, setFilter] = useState('');
+  const [data, setData] = useState(() => {
+   
         try {
-  const savedObj = window.localStorage.getItem("key")
+        const savedObj = window.localStorage.getItem("key")
         return savedObj ? JSON.parse(savedObj) : contactData
         }
+   
         catch (error) {
             console.log(error)
             return contactData
       }
-        
     })
     
     useEffect(() => {
         window.localStorage.setItem("key", JSON.stringify(data))
     }, [data])
   
-  const initialValues = {
+    const initialValues = {
     id: nanoid(),
     name: '',
     number: '',
 }
 
-const handleSubmit = (values, actions) => {
-  setData((prev) => {
+  const handleSubmit = (values, actions) => {
+   setData((prev) => {
       return [...prev, values]
     })
     actions.resetForm();
   }
   
   const handleDelete = (contactId) => {
-    setData((prev) => {
-      return prev.filter((contact) => {
-      return contact.id !== contactId
-  })
-})
-  }
+    setData((prev) => prev.filter((contact) => contact.id !== contactId));
+};
+
+  const visibleContacts = data.filter((data) => {
+      return data.name.toLowerCase().includes(filter.toLowerCase())
+    })
+  
   return (
-    <div>
-      <div>
+    <div className='mainWrapper'>
         <ContactForm initialValues={initialValues} handleSubmit={handleSubmit} />
-      </div>
-      <div>
-        <SearchBox />
-      </div>
-      <div>
-        <ContactList data={data} onDelete={handleDelete} />
-      </div>
+        <SearchBox value={filter} onFilter={setFilter} />
+        <ContactList data={visibleContacts} onDelete={handleDelete} />
     </div>
   )
 }
-
-
