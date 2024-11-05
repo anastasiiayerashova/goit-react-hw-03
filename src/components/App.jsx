@@ -9,6 +9,7 @@ import { nanoid } from 'nanoid';
 
 
 export default function App() {
+
  const [data, setData] = useState(() => {
         try {
   const savedObj = window.localStorage.getItem("key")
