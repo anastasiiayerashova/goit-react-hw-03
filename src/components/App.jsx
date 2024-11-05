@@ -4,7 +4,7 @@ import SearchBox from './SearchBox/SearchBox';
 import ContactList from './ContactList/ContactList';
 import contactData from '../contactData.json';
 import { useState, useEffect } from 'react';
-
+import { nanoid } from 'nanoid';
 
 
 
@@ -25,16 +25,36 @@ export default function App() {
         window.localStorage.setItem("key", JSON.stringify(data))
     }, [data])
   
+  const initialValues = {
+    id: nanoid(),
+    name: '',
+    number: '',
+}
+
+const handleSubmit = (values, actions) => {
+  setData((prev) => {
+      return [...prev, values]
+    })
+    actions.resetForm();
+  }
+  
+  const handleDelete = (contactId) => {
+    setData((prev) => {
+      return prev.filter((contact) => {
+      return contact.id !== contactId
+  })
+})
+  }
   return (
     <div>
       <div>
-        <ContactForm />
+        <ContactForm initialValues={initialValues} handleSubmit={handleSubmit} />
       </div>
       <div>
         <SearchBox />
       </div>
       <div>
-        <ContactList data={data} />
+        <ContactList data={data} onDelete={handleDelete} />
       </div>
     </div>
   )

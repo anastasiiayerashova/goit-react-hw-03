@@ -2,9 +2,10 @@ import s from './Contact.module.css';
 import { FaUser } from "react-icons/fa6";
 import { MdLocalPhone } from "react-icons/md";
 
-export default function Contact({id, name, number}) {
+export default function Contact({ id, name, number, onDelete }) {
+   
     return (
-        <li className={s.item}>
+        <div className={s.item}>
             <div className={s.itemDiv}>  
                 <div className={s.iconsDiv}>  
                     <FaUser />
@@ -16,7 +17,9 @@ export default function Contact({id, name, number}) {
                 </div>
               
                 </div>
-            <button type='submit'>Delete</button>
-        </li>
+            <button type='button' onClick={() => {
+                onDelete(id)
+            }}>Delete</button>
+        </div>
     )
 }

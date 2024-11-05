@@ -8,24 +8,16 @@ const FeedbackScheme = Yup.object().shape({
     number: Yup.string().min(3, 'Too Short!').max(50, 'Too Long!').required('Required'),
 })
 
-const initialValues = {
-    name: '',
-    number: '',
-}
 
-const handleSumbit = (values, actions) => {
-    console.log(values)
-    actions.resetForm();
-}
 
-export default function ContactForm() {
+export default function ContactForm({initialValues, handleSubmit}) {
     const nameId = useId();
     const numberId = useId();
 
     return (
         <div className={s.formDiv}>  
             <h1 className={s.title}>Phonebook</h1>
-            <Formik initialValues={initialValues} onSubmit={handleSumbit} validationSchema={FeedbackScheme}>
+            <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={FeedbackScheme}>
                 <Form className={s.form}>
                     <label htmlFor={nameId}>Name</label>
                     <Field type='text' name='name' id={nameId} className={s.inputs}></Field>
