@@ -27,14 +27,16 @@ export default function App() {
     }, [data])
   
     const initialValues = {
-    id: nanoid(),
     name: '',
     number: '',
 }
 
   const handleSubmit = (values, actions) => {
    setData((prev) => {
-      return [...prev, values]
+     return [...prev, {
+       ...values,
+        id: nanoid()
+      }]
     })
     actions.resetForm();
   }
